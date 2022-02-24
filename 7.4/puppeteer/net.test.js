@@ -1,5 +1,4 @@
 let page;
-let time;
 
 describe("Netology.ru tests", () => {
   beforeEach(async () => {
