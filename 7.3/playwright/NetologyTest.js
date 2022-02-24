@@ -1,10 +1,11 @@
+const user = require("./user.js");
 const { chromium } = require("playwright");
 //Тест 1. Успешная авторизация.
 (async () => {
   const browser = await chromium.launch({
     headless: false,
-    //slowMo: 2000,
-    //devtools: true,
+    slowMo: 5000,
+    devtools: true,
   });
   const page = await browser.newPage();
   await page.goto("https://netology.ru");
@@ -15,11 +16,12 @@ const { chromium } = require("playwright");
   // Click [placeholder="Email"]
   await page.click('[placeholder="Email"]');
   // Fill [placeholder="Email"]
-  await page.fill('[placeholder="Email"]', email);
+  await page.fill('[placeholder="Email"]', user.email);
+  //await page.pause();
   // Press Tab
   await page.press('[placeholder="Email"]', "Tab");
   // Fill [placeholder="Пароль"]
-  await page.fill('[placeholder="Пароль"]', password);
+  await page.fill('[placeholder="Пароль"]', user.password);
   await page.click("text=Войти");
   await page.textContent("text=Мои курсы и профессии");
   await browser.close();
@@ -28,8 +30,8 @@ const { chromium } = require("playwright");
 (async () => {
   const browser = await chromium.launch({
     headless: false,
-    //slowMo: 2000,
-    //devtools: true,
+    slowMo: 5000,
+    devtools: true,
   });
   const page = await browser.newPage();
   await page.goto("https://netology.ru");
