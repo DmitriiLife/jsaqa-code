@@ -5,15 +5,16 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
+    "test2": "playwright",
     "cucumber": "cucumber-js"
   },
-  "author": "",
+  "author": "shadrin",
   "license": "ISC",
   "dependencies": {
-    "jest": "^27.3.1",
-    "jest-puppeteer": "^6.0.0",
-    "puppeteer": "^11.0.0",
-    "chai": "^4.3.4",
-    "cucumber": "^7.0.0-rc.0"
+    "jest": "^27.5.1",
+    "jest-puppeteer": "^6.1.0",
+    "@playwright/test": "^1.19.1",
+    "playwright": "^1.19.1",
+    "puppeteer": "^13.4.0"
   }
 }

@@ -3,53 +3,58 @@ const { generateName } = require("./lib/util.js");
 
 let page;
 
-beforeEach(async () => {
-  page = await browser.newPage();
-  await page.setDefaultNavigationTimeout(0);
-});
-
-afterEach(() => {
-  page.close();
-});
-
-describe("Netology.ru tests", () => {
+describe("Идём в кино tests", () => {
   beforeEach(async () => {
     page = await browser.newPage();
-    await page.goto("https://netology.ru");
+    await page.goto("http://qamid.tmweb.ru/client/index.php");
+  });
+  afterEach(() => {
+    page.close();
   });
 
-  test("The first test'", async () => {
-    const title = await page.title();
-    console.log("Page title: " + title);
-    await clickElement(page, "header a + a");
-    const title2 = await page.title();
-    console.log("Page title: " + title2);
-    const pageList = await browser.newPage();
-    await pageList.goto("https://netology.ru/navigation");
-    await pageList.waitForSelector("h1");
-  });
+  test("When to watch movies", async () => {
+    await page.waitForSelector("h1");
+    const [weekDay] = await page.$x('//span[contains(text(),"Вс")]');
+    await weekDay.click();
+    await page.waitForSelector("h1");
+    const [timeFilm] = await page.$x(
+      "/html/body/main/section[1]/div[3]/ul/li/a"
+    );
+    await timeFilm.click();
+    await page.waitForSelector("h1");
+    const [place] = await page.$x(
+      "/html/body/main/section/div[2]/div[1]/div[6]/span[9]"
+    );
+    await place.click();
+    await page.waitForSelector("h1");
+    const [button] = await page.$x("/html/body/main/section/button");
+    await button.click();
+    await page.waitForSelector("h1");
+    const [buttonLast] = await page.$x("/html/body/main/section/div/button");
+    await buttonLast.click();
+    const actual = await getText(page, "h2");
+    console.log(actual);
+  }, 60000);
 
-  test("The first link text 'Медиа Нетологии'", async () => {
-    const actual = await getText(page, "header a + a");
-    expect(actual).toContain("Медиа Нетологии");
-  });
-
-  test("The first link leads on 'Медиа' page", async () => {
-    await clickElement(page, "header a + a");
-    const actual = await getText(page, ".logo__media");
-    await expect(actual).toContain("Медиа");
-  });
+  test("Wednesday to watch movies", async () => {
+    await page.waitForSelector("h1");
+    const [weekDay] = await page.$x('//span[contains(text(),"Ср")]');
+    await weekDay.click();
+    await page.waitForSelector("h1");
+    const [timeFilm] = await page.$x(
+      "/html/body/main/section[1]/div[3]/ul/li/a"
+    );
+    await timeFilm.click();
+    await page.waitForSelector("[disabled=true]");
+  }, 60000);
 });
 
-test("Should look for a course", async () => {
-  await page.goto("https://netology.ru/navigation");
-  await putText(page, "input", "тестировщик");
-  const actual = await page.$eval("a[data-name]", (link) => link.textContent);
-  const expected = "Тестировщик ПО";
+test("The h2 should contain 'Фильм 1'", async () => {
+  page = await browser.newPage();
+  const expected = "Фильм 1";
+  await page.goto("http://qamid.tmweb.ru/client/hall.php");
+  const actual = await getText(page, "h2");
   expect(actual).toContain(expected);
-});
-
-test("Should show warning if login is not email", async () => {
-  await page.goto("https://netology.ru/?modal=sign_in");
-  await putText(page, 'input[type="email"]', generateName(5));
-});
+  console.log(actual);
+  await page.close();
+}, 10000);
