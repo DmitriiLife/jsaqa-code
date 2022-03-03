@@ -17,18 +17,41 @@ After(async function () {
   }
 });
 
-Given("user is on {string} page", async function (string) {
-  return await this.page.goto(`https://netology.ru${string}`, {
-    setTimeout: 20000,
-  });
+Given("open is on {string} page", async function (string) {
+  return await this.page.goto(`https://qamid.tmweb.ru${string}`);
 });
 
-When("user search by {string}", async function (string) {
-  return await putText(this.page, "input", string);
+Then("the user sees the movie {string}", async function (string) {
+  const actual = await getText(
+    this.page,
+    "body > main > section:nth-child(2) > div.movie__info > div.movie__description > p.movie__synopsis"
+  );
+  expect(actual).contain(string);
 });
 
-Then("user sees the course suggested {string}", async function (string) {
-  const actual = await getText(this.page, "a[data-name]");
-  const expected = await string;
-  expect(actual).contains(expected);
+Then("the user sees the movie e {string}", async function (string) {
+  const actual = await getText(this.page, "p.movie__synopsi");
+  expect(actual).contain(string);
+});
+
+Then("the user sees the movie w {string}", async function (string) {
+  const actual = await getText(this.page, "h2");
+  expect(actual).contain(string);
+});
+
+Then("the user sees the movie q {string}", async function (string) {
+  const actual = await getText(this.page, "h2");
+  expect(actual).contain(string);
+});
+
+When("the user sees {string}", async function (string) {
+  return await this.page.waitForSelector("h2");
+});
+
+Then("the user sees the movie l {string}", async function (string) {
+  const actual = await getText(
+    this.page,
+    "body > main > section:nth-child(2) > div.movie__info > div.movie__description > p.movie__data > span.movie__data-origin"
+  );
+  expect(actual).contain(string);
 });
