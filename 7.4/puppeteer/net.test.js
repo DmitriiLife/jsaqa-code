@@ -2,7 +2,6 @@ let page;
 
 beforeEach(async () => {
   page = await browser.newPage();
-  await page.goto("https://netology.ru");
 });
 
 afterEach(() => {
@@ -19,17 +18,24 @@ describe("Netology.ru tests", () => {
     page.close();
   });
 
-  test("The first test'", async () => {
+  test("The 'Медиа'", async () => {
     const title = await page.title();
     console.log("Page title: " + title);
-    const firstLink = await page.$("header a + a");
-    await firstLink.click();
-    await page.waitForNavigation();
-    const title2 = await page.title();
-    console.log("Page title: " + title2);
-    const pageList = await browser.newPage();
-    await pageList.goto("https://netology.ru/navigation");
-    await pageList.waitForSelector("h1");
+    await page.$("header a + a").click;
+    await page.goto("https://netology.ru/blog/");
+    const expected = "Медиа";
+    const actual  = await page.$eval("h1", (link) => link.textContent);
+    expect(actual).toContain(expected);
+  }, 9000);
+
+  test("The 'Курсы'", async () => {
+    const title = await page.title();
+    console.log("Page title: " + title);
+    await page.$('a[href$="/navigation"]').click;
+    await page.goto("https://netology.ru/navigation");
+    const expected = "Курсы";
+    const actual  = await page.$eval("h1", (link) => link.textContent);
+    expect(actual).toContain(expected);
   }, 9000);
 
   test("The link text 'Медиа Нетологии'", async () => {
@@ -47,45 +53,49 @@ describe("Netology.ru tests", () => {
   }, 9000);
 });
 
-test("The link text 'Учиться бесплатно'", async () => {
-  const firstLink = await page.$("header a + a");
-  await firstLink.click();
-  const pageList = await browser.newPage();
-  await pageList.goto("https://netology.ru/free");
-  await pageList.waitForSelector("h1");
-  page.close();
-}, 15000);
+test("The link text 'Бесплатные курсы, лекции и полезные материалы'", async () => {
+  await page.goto("https://netology.ru");
+  await page.$('a[href$="/free"').click;
+  await page.goto("https://netology.ru/free");
+  const expected = "Бесплатные";
+  const actual  = await page.$eval("h1", (link) => link.textContent);
+  expect(actual).toContain(expected);
+}, 9000);
 
 test("The link text 'Творческие профессии'", async () => {
-  const firstLink = await page.$("header a + a");
-  await firstLink.click();
-  const studyForFree = await browser.newPage();
-  await studyForFree.goto("https://netology.ru/free/creative");
-  await studyForFree.waitForSelector("h1");
-  page.close();
+  await page.goto("https://netology.ru");
+  await page.$('a[href$="/free"').click;
+  await page.goto("https://netology.ru/free");
+  await page.$('a[href$="/free/creative"').click;
+  await page.goto("https://netology.ru/free/creative");
+  const expected = "Творческие профессии";
+  const actual  = await page.$eval('a[href$="/free/creative"', (link) => link.textContent);
+  expect(actual).toContain(expected);
 }, 9000);
 
 test("The link text 'Предложения от наших партнёров'", async () => {
-  const firstLink = await page.$("header a + a");
-  await firstLink.click();
-  const studyForFree = await browser.newPage();
-  await studyForFree.goto("https://netology.ru/partners-gifts");
-  await studyForFree.waitForSelector("h1");
-  page.close();
+  await page.goto("https://netology.ru");
+  await page.$('a[href$="/partners-gifts"').click;
+  await page.goto("https://netology.ru/partners-gifts");
+  const expected = "Предложения от наших партнёров";
+  const actual  = await page.$eval("h1", (link) => link.textContent);
+  expect(actual).toContain(expected);
 }, 9000);
 
 test("The h1 should contain 'Работа'", async () => {
-  const expected = "Работа";
+  await page.goto("https://netology.ru");
+  await page.$('a[href$="https://netology.ru/job"').click;
   await page.goto("https://netology.ru/job");
+  const expected = "Работа";
   const actual = await page.$eval("h1", (link) => link.textContent);
   expect(actual).toContain(expected);
-  page.close();
 }, 9000);
 
 test("The h1 should contain 'Отзывы'", async () => {
-  const expected = "Отзывы студентов Нетологии";
+  await page.goto("https://netology.ru");
+  await page.$('a[href$="/otzyvy"').click;
   await page.goto("https://netology.ru/otzyvy");
+  const expected = "Отзывы студентов Нетологии";
   const actual = await page.$eval("h1", (link) => link.textContent);
   expect(actual).toContain(expected);
-  page.close();
 }, 9000);
