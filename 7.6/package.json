@@ -1,14 +1,65 @@
 {
-  "name": "cypress-test",
-  "version": "1.0.0",
-  "description": "first tests with Cypress",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "OM",
-  "license": "ISC",
+  "name": "intro",
+  "version": "0.1.0",
+  "private": true,
   "dependencies": {
-    "cypress": "^9.5.1"
+    "@testing-library/jest-dom": "^5.16.2",
+    "@testing-library/react": "^12.1.4",
+    "@testing-library/user-event": "^7.2.1",
+    "bootstrap": "^4.6.1",
+    "cors": "^2.8.5",
+    "forever": "^0.14.2",
+    "koa": "^2.13.4",
+    "koa-body": "^4.2.0",
+    "koa-router": "^9.4.0",
+    "moment": "^2.29.1",
+    "prop-types": "^15.8.1",
+    "react": "^16.14.0",
+    "react-bootstrap": "^1.6.4",
+    "react-dom": "^16.14.0",
+    "react-router-dom": "^5.3.0",
+    "react-scripts": "^5.0.0",
+    "typescript": "^3.2.1",
+    "uuid": "^8.3.2"
+  },
+  "scripts": {
+    "server": "forever -w server.js",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "lint": "eslint ."
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.1.0",
+    "cypress": "^4.12.1",
+    "cypress-file-upload": "^5.0.8",
+    "cypress-image-snapshot": "^4.0.1",
+    "eslint": "^8.11.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-config-react-app": "^7.0.0",
+    "eslint-plugin-flowtype": "^8.0.3",
+    "eslint-plugin-import": "^2.15.0",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-react": "^7.29.4",
+    "eslint-plugin-react-hooks": "^4.3.0",
+    "prettier": "^2.5.1"
   }
 }
