@@ -1,14 +1,21 @@
 {
-  "name": "jsaqa-live-7",
+  "name": "7.7",
   "version": "1.0.0",
-  "description": "",
+  "description": "\"Poc\"",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "test"
   },
-  "author": "",
+  "keywords": [
+    "7.7"
+  ],
+  "author": "Shadrin",
   "license": "ISC",
   "dependencies": {
-    "cypress": "^9.0.0"
+    "cypress-image-snapshot": "^4.0.1"
+  },
+  "devDependencies": {
+    "cypress": "^9.5.2",
+    "cypress-file-upload": "^5.0.8"
   }
 }
