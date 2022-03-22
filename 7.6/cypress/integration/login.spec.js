@@ -18,7 +18,7 @@ it("Should not login with empty login", () => {
     .should("be.false");
   cy.get("#mail")
     .then(($el) => $el[0].validationMessage)
-    .should("contain", "Please fill out this field.");
+    .should("contain", "Заполните это поле.");
 });
 
 it("Should not login with empty password", () => {
@@ -38,9 +38,9 @@ it("Should valid account and add favorite book", () => {
   cy.get("#description").type(
     "Я слишком люблю жизнь, чтобы сдаваться, не на ту нарвались! Но, как выяснилось, я воспринимала окружающую реальность не так, как следовало, поэтому правда жёстко смахнула с меня мои розовые очки. И конечно же, когда я была к этому совершенно не готова. И всё из-за подруги, которую мне приспичило спасать. По закону подлости всё изменила одна встреча. Парень, неожиданно взявшийся меня опекать, этот нахальный, высокомерный мажор, оказался человеком лишь отчасти. Но самое удивительное то, с чем я столкнулась на севере. Стая оборотней, круто изменивших мою судьбу, наполнив её дружбой, чувствами, борьбой и смыслом. Можно ли пережить разлуку и потерю, вверив сердце тому, кого почти не знаешь? Можно, если в глазах этого невероятного мужчины отражается преданность и безусловная любовь."
   );
-  cy.get("#fileCover").attachFile("../../../../lava.png");
+  cy.get("#fileCover").attachFile("../../../../Desktop/lava.png");
   cy.wait(2000);
-  cy.get("#fileBook").attachFile("../../../../book.epub.zip");
+  cy.get("#fileBook").attachFile("../../../../Desktop/book.epub.zip");
   cy.wait(2000);
   cy.get("#authors").type("Риз Лаванда");
   cy.contains("add to favorite").click().click();
@@ -57,9 +57,9 @@ it("Should valid account and delete favorite book", () => {
   cy.get("#description").type(
     "Я слишком люблю жизнь, чтобы сдаваться, не на ту нарвались! Но, как выяснилось, я воспринимала окружающую реальность не так, как следовало, поэтому правда жёстко смахнула с меня мои розовые очки. И конечно же, когда я была к этому совершенно не готова. И всё из-за подруги, которую мне приспичило спасать. По закону подлости всё изменила одна встреча. Парень, неожиданно взявшийся меня опекать, этот нахальный, высокомерный мажор, оказался человеком лишь отчасти. Но самое удивительное то, с чем я столкнулась на севере. Стая оборотней, круто изменивших мою судьбу, наполнив её дружбой, чувствами, борьбой и смыслом. Можно ли пережить разлуку и потерю, вверив сердце тому, кого почти не знаешь? Можно, если в глазах этого невероятного мужчины отражается преданность и безусловная любовь."
   );
-  cy.get("#fileCover").attachFile("../../../../lava.png");
+  cy.get("#fileCover").attachFile("../../../../Desktop/lava.png");
   cy.wait(2000);
-  cy.get("#fileBook").attachFile("../../../../book.epub.zip");
+  cy.get("#fileBook").attachFile("../../../../Desktop/book.epub.zip");
   cy.wait(2000);
   cy.get("#authors").type("Риз Лаванда");
   cy.contains("add to favorite").click().click();
@@ -71,7 +71,7 @@ it("Should valid account and delete favorite book", () => {
   );
 });
 
-it("Should valid account and add dowload book", () => {
+it("Should valid account and add dowload book(bug)", () => {
   cy.visit("/");
   cy.login("bropet@mail.ru", "123");
   cy.contains("Add new").click();
@@ -80,9 +80,9 @@ it("Should valid account and add dowload book", () => {
   cy.get("#description").type(
     "Я слишком люблю жизнь, чтобы сдаваться, не на ту нарвались! Но, как выяснилось, я воспринимала окружающую реальность не так, как следовало, поэтому правда жёстко смахнула с меня мои розовые очки. И конечно же, когда я была к этому совершенно не готова. И всё из-за подруги, которую мне приспичило спасать. По закону подлости всё изменила одна встреча. Парень, неожиданно взявшийся меня опекать, этот нахальный, высокомерный мажор, оказался человеком лишь отчасти. Но самое удивительное то, с чем я столкнулась на севере. Стая оборотней, круто изменивших мою судьбу, наполнив её дружбой, чувствами, борьбой и смыслом. Можно ли пережить разлуку и потерю, вверив сердце тому, кого почти не знаешь? Можно, если в глазах этого невероятного мужчины отражается преданность и безусловная любовь."
   );
-  cy.get("#fileCover").attachFile("../../../../lava.png");
+  cy.get("#fileCover").attachFile("../../../../Desktop/lava.png");
   cy.wait(2000);
-  cy.get("#fileBook").attachFile("../../../../book.epub.zip");
+  cy.get("#fileBook").attachFile("../../../../Desktop/book.epub.zip");
   cy.wait(2000);
   cy.get("#authors").type("Риз Лаванда");
   cy.contains("add to favorite").click().click();
@@ -91,7 +91,7 @@ it("Should valid account and add dowload book", () => {
   cy.contains("Dowload book").click();
 });
 
-it("Should valid account, add two book, log out", () => {
+it("Should valid account, add two book(bug)", () => {
   cy.visit("/");
   cy.login("bropet@mail.ru", "123");
   cy.contains("Add new").click();
@@ -100,9 +100,9 @@ it("Should valid account, add two book, log out", () => {
   cy.get("#description").type(
     "Я слишком люблю жизнь, чтобы сдаваться, не на ту нарвались! Но, как выяснилось, я воспринимала окружающую реальность не так, как следовало, поэтому правда жёстко смахнула с меня мои розовые очки. И конечно же, когда я была к этому совершенно не готова. И всё из-за подруги, которую мне приспичило спасать. По закону подлости всё изменила одна встреча. Парень, неожиданно взявшийся меня опекать, этот нахальный, высокомерный мажор, оказался человеком лишь отчасти. Но самое удивительное то, с чем я столкнулась на севере. Стая оборотней, круто изменивших мою судьбу, наполнив её дружбой, чувствами, борьбой и смыслом. Можно ли пережить разлуку и потерю, вверив сердце тому, кого почти не знаешь? Можно, если в глазах этого невероятного мужчины отражается преданность и безусловная любовь."
   );
-  cy.get("#fileCover").attachFile("../../../../lava.png");
+  cy.get("#fileCover").attachFile("../../../../Desktop/lava.png");
   cy.wait(2000);
-  cy.get("#fileBook").attachFile("../../../../book.epub.zip");
+  cy.get("#fileBook").attachFile("../../../../Desktop/book.epub.zip");
   cy.wait(2000);
   cy.get("#authors").type("Риз Лаванда");
   cy.contains("Submit").click();
@@ -112,9 +112,9 @@ it("Should valid account, add two book, log out", () => {
   cy.get("#description").type(
     "Я слишком люблю жизнь, чтобы сдаваться, не на ту нарвались! Но, как выяснилось, я воспринимала окружающую реальность не так, как следовало, поэтому правда жёстко смахнула с меня мои розовые очки. И конечно же, когда я была к этому совершенно не готова. И всё из-за подруги, которую мне приспичило спасать. По закону подлости всё изменила одна встреча. Парень, неожиданно взявшийся меня опекать, этот нахальный, высокомерный мажор, оказался человеком лишь отчасти. Но самое удивительное то, с чем я столкнулась на севере. Стая оборотней, круто изменивших мою судьбу, наполнив её дружбой, чувствами, борьбой и смыслом. Можно ли пережить разлуку и потерю, вверив сердце тому, кого почти не знаешь? Можно, если в глазах этого невероятного мужчины отражается преданность и безусловная любовь."
   );
-  cy.get("#fileCover").attachFile("../../../../lava.png");
+  cy.get("#fileCover").attachFile("../../../../Desktop/lava.png");
   cy.wait(2000);
-  cy.get("#fileBook").attachFile("../../../../book.epub.zip");
+  cy.get("#fileBook").attachFile("../../../../Desktop/book.epub.zip");
   cy.wait(2000);
   cy.get("#authors").type("Риз Лаванда");
   cy.contains("Submit").click();
@@ -122,7 +122,12 @@ it("Should valid account, add two book, log out", () => {
   cy.contains("Please add some book to favorit on home page!").should(
     "be.visible"
   );
-  cy.contains("Books list").click();
+});
+
+it("Should valid account and button log out", () => {
+  cy.visit("/");
+  cy.login("bropet@mail.ru", "123");
+  cy.wait(3000);
   cy.contains("Log out").click();
   cy.contains("Log in").should("be.visible");
 });
