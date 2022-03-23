@@ -1,10 +1,11 @@
 {
   "name": "7.7",
   "version": "1.0.0",
-  "description": "\"Poc\"",
+  "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "test"
+    "open": "npx cypress open",
+    "api": "npx cypress run --record --key bef1f1f9-dc87-4e3d-8499-052324494dba"
   },
   "keywords": [
     "7.7"

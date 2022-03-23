@@ -1,29 +1,66 @@
 import "cypress-file-upload";
 
+Cypress.Commands.add("login", (login, password) => {
+  cy.request({
+    method: "GET",
+    url: "https://petstore.swagger.io/v2/user/login",
+    body: {username: login, password: password},
+  });
+});
+
 Cypress.Commands.add(
-  "uploadFile",
-  { prevSubject: true },
-  (subject, fixturePath, mimeType) => {
-    cy.fixture(fixturePath, "base64").then((content) => {
-      Cypress.Blob.base64StringToBlob(content, mimeType).then((blob) => {
-        const testfile = new File([blob], fixturePath, { type: mimeType });
-        const dataTransfer = new DataTransfer();
-        const fileInput = subject[0];
-
-        dataTransfer.items.add(testfile);
-        fileInput.files = dataTransfer.files;
-
-        cy.wrap(subject).trigger("change", { force: true });
-      });
+  "creat",
+  (id, username, firstName, lastName, email, password, phone, userStatus) => {
+    cy.request({
+      method: "POST",
+      url: "https://petstore.swagger.io/v2/user",
+      body: {
+        id: id,
+        username: username,
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        password: password,
+        phone: phone,
+        userStatus: userStatus,
+      },
     });
   }
 );
 
+Cypress.Commands.add("delet", () => {
+  cy.request({
+    method: "DELETE",
+    url: "https://petstore.swagger.io/v2/user/Andi",
+  });
+});
+
 Cypress.Commands.add(
-  "dragTo",
-  { prevSubject: "element" },
-  (subject, targetEl) => {
-    cy.wrap(subject).trigger("dragstart");
-    cy.get(targetEl).trigger("drop");
+  "editing",
+  (id, username, firstName, lastName, email, password, phone, userStatus) => {
+    cy.request({
+      method: "PUT",
+      url: "https://petstore.swagger.io/v2/user/And",
+      body: {
+        id: id,
+        username: username,
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        password: password,
+        phone: phone,
+        userStatus: userStatus,
+      },
+    });
   }
 );
+
+Cypress.Commands.add("search", (url, code) => {
+  cy.request({
+    method: "GET",
+    url: url,
+  }).then((response) => {
+    cy.log(JSON.stringify(response.body));
+    expect(response.status).to.eq(code);
+  });
+});

@@ -4,11 +4,11 @@ describe("Lectures", () => {
     cy.get(".page-nav__day").should("have.length", 7);
   });
 
-  it("Should be possible to book", () => {
+  it("Should be possible to tiket", () => {
     cy.visit("http://qamid.tmweb.ru/client/index.php");
-    cy.get("a.page-nav__day:nth-of-type(4)").click();
+    cy.get("a.page-nav__day:nth-of-type(5)").click();
     cy.get(
-      ":nth-child(2) > :nth-child(3) > .movie-seances__list > .movie-seances__time-block > .movie-seances__time"
+      ":nth-child(2) > :nth-child(2).movie-seances__hall > .movie-seances__list > .movie-seances__time-block > .movie-seances__time"
     ).click();
     const seats = require("../fixtures/seats.json");
     seats.forEach((seat) => {
@@ -36,8 +36,8 @@ describe("The main page, checking the login in the admin panel", () => {
   });
 });
 
-describe("Custom script to add a new room and buy tickets", () => {
-  it("Should show correct number of days", () => {
+describe("Сreate, start, buy, close, delete hall", () => {
+  it("Сreate a hall", () => {
     cy.visit("http://qamid.tmweb.ru/admin");
     cy.contains("E-mail").type("qamid@qamid.ru");
     cy.contains("Пароль").type("qamid");
@@ -75,25 +75,25 @@ describe("Custom script to add a new room and buy tickets", () => {
       "Главный герой этой экранизации культовой компьютерной игры, юный принц Дастан всегда побеждал врагов в бою, но потерял королевство из-за козней коварного царедворца. Теперь Дастану предстоит похитить из рук злодеев могущественный магический артефакт, способный повернуть время вспять и сделать своего владельца властелином мира. Помочь одолеть врагов Дастану помогут его блестящие навыки владения холодным оружием, а также недюжинные способности к акробатике и эквилибристике."
     );
     cy.contains("Страна").type("США");
-    const filePath = "../fixtures/images/film.png";
-    cy.get('[value="Загрузить постер"]').attachFile(filePath);
-    cy.wait(5000);
+    cy.get('[value="Загрузить постер"]').attachFile(
+      "../../../../Desktop/film.png"
+    );
     cy.get('[value="Добавить фильм"]').click();
     cy.contains("Принц Персии: Пески времени").should("be.visible");
   });
 
-  it("Should show open sales", () => {
+  it("Start selling tickets", () => {
     cy.visit("http://qamid.tmweb.ru/admin");
     cy.contains("E-mail").type("qamid@qamid.ru");
     cy.contains("Пароль").type("qamid");
     cy.get(".login__button").click();
     cy.get(
-      '#start-sales > [style="display: block;"] > .conf-step__selectors-box > :nth-child(4) > .conf-step__radio'
+      '#start-sales > [style="display: block;"] > .conf-step__selectors-box > :nth-child(3) > .conf-step__radio'
     ).click();
     cy.contains("Открыть продажу билетов").click();
   });
 
-  it("Should show correct number of days", () => {
+  it("Buy tickets for the whole group", () => {
     cy.visit("http://qamid.tmweb.ru/client/index.php");
     cy.contains("Вс").click();
     cy.get(
@@ -104,25 +104,62 @@ describe("Custom script to add a new room and buy tickets", () => {
       cy.get(
         `.buying-scheme__wrapper > :nth-child(${vipSeat.row}) > :nth-child(${vipSeat.seat})`
       ).click();
-      cy.get(".acceptin-button").click();
-
-      cy.get(".acceptin-button").click();
-      cy.get(".ticket__check-title").should("be.visible");
     });
+    cy.get(".acceptin-button").click();
+    cy.contains("Вы выбрали билеты").should("be.visible");
+    cy.contains("Получить код бронирования").click();
+    cy.contains("Электронный билет").should("be.visible");
+  });
+
+  it("Closing sales and delete hall", () => {
+    cy.visit("http://qamid.tmweb.ru/admin");
+    cy.contains("E-mail").type("qamid@qamid.ru");
+    cy.contains("Пароль").type("qamid");
+    cy.get(".login__button").click();
+    cy.get(
+      '#start-sales > [style="display: block;"] > .conf-step__selectors-box > :nth-child(3) > .conf-step__radio'
+    ).click();
+    cy.contains("Закрыть продажу билетов").click();
+    cy.contains("Все готово к открытию").should("be.visible");
+    cy.get(".conf-step__list").contains("Window").children().click();
+    cy.get("form > .conf-step__buttons > .conf-step__button-accent").click();
+    cy.wait(2000);
+    cy.contains("Window").should("not.exist");
   });
 });
-
-it.only("Should show closing sales and delete hall", () => {
+it("Add hall(issue4)", () => {
   cy.visit("http://qamid.tmweb.ru/admin");
   cy.contains("E-mail").type("qamid@qamid.ru");
   cy.contains("Пароль").type("qamid");
   cy.get(".login__button").click();
-  cy.get(
-    '#start-sales > [style="display: block;"] > .conf-step__selectors-box > :nth-child(4) > .conf-step__radio'
-  ).click();
-  cy.contains("Закрыть продажу билетов").click();
-  cy.contains("Все готово к открытию").should("be.visible");
-  cy.get(".conf-step__list > :nth-child(4) > a > .conf-step__button").click();
-  cy.get("form > .conf-step__buttons > .conf-step__button-accent").click();
-  cy.contains("Window").should("be.false");
+  cy.contains("Создать зал").click();
+  cy.contains("Название зала").type("W");
+  cy.contains("Добавить зал").click();
+  cy.contains("W").should("be.visible");
+  cy.contains("Добавить фильм").click();
+  cy.contains("Название фильма").type("Принц Персии: Пески времени");
+  cy.contains("Продолжительность фильма (мин.)").type("115");
+  cy.contains("Описание фильма").type(
+    "Главный герой этой экранизации культовой компьютерной игры, юный принц Дастан всегда побеждал врагов в бою, но потерял королевство из-за козней коварного царедворца. Теперь Дастану предстоит похитить из рук злодеев могущественный магический артефакт, способный повернуть время вспять и сделать своего владельца властелином мира. Помочь одолеть врагов Дастану помогут его блестящие навыки владения холодным оружием, а также недюжинные способности к акробатике и эквилибристике."
+  );
+  cy.contains("Страна").type("США");
+  cy.get('[value="Загрузить постер"]').attachFile(
+    "../../../../Desktop/film.png"
+  );
+  cy.get('[value="Добавить фильм"]').click();
+  cy.contains("Принц Персии: Пески времени").should("be.visible");
+});
+
+it("Movie drag and drop(issue5)", () => {
+  cy.visit("http://qamid.tmweb.ru/admin");
+  cy.contains("E-mail").type("qamid@qamid.ru");
+  cy.contains("Пароль").type("qamid");
+  cy.get(".login__button").click();
+  cy.get('[draggable="true"][data-film-id="90"] > .conf-step__movie-poster')
+    .trigger("mousedown", {button: 0}, {force: true})
+    .trigger("mousemove", 5, 550, {force: true});
+  cy.get('[data-hall-id="1740"] > .conf-step__seances-timeline')
+    .click()
+    .trigger("mouseup", {force: true});
+  cy.get('[data-seance-id="90"]').should("be.visible");
 });

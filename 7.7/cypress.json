@@ -1,1 +1,5 @@
-{}
+{
+  "retries": 2,
+  "defaultCommandTimeout": 8000,
+  "projectId": "vowx2e"
+}

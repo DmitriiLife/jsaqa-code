@@ -1,17 +1,12 @@
 [
-  { "row": 9, "seat": 1 },
-  { "row": 9, "seat": 2 },
-  { "row": 9, "seat": 3 },
-  { "row": 9, "seat": 4 },
-  { "row": 9, "seat": 5 },
-  { "row": 9, "seat": 6 },
-  { "row": 9, "seat": 7 },
-  { "row": 9, "seat": 8 },
-  { "row": 9, "seat": 9 },
-  { "row": 9, "seat": 10 },
-  { "row": 9, "seat": 11 },
-  { "row": 9, "seat": 12 },
-  { "row": 9, "seat": 13 },
-  { "row": 9, "seat": 14 },
-  { "row": 9, "seat": 15 }
+  { "row": 4, "seat": 6 },
+  { "row": 4, "seat": 7 },
+  { "row": 4, "seat": 8 },
+  { "row": 4, "seat": 9 },
+  { "row": 4, "seat": 10 },
+  { "row": 4, "seat": 11 },
+  { "row": 4, "seat": 12 },
+  { "row": 4, "seat": 13 },
+  { "row": 4, "seat": 14 },
+  { "row": 4, "seat": 15 }
 ]
