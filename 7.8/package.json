@@ -1,0 +1,25 @@
+{
+  "name": "7.7",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "open": "npx cypress open",
+    "api": "npx cypress run --record --key bef1f1f9-dc87-4e3d-8499-052324494dba",
+    "cy:spec1": "cypress run --spec 'cypress/integration/api.spec.js' --record --key bef1f1f9-dc87-4e3d-8499-052324494dba",
+    "cy:spec2": "cypress run --spec 'cypress/integration/first.spec.js' --record --key bef1f1f9-dc87-4e3d-8499-052324494dba",
+    "cy:parallel": "npm run cy:pres1 -- --browser chrome --group Spec1 --ci-buld-id 6 & npm run cy:pres2 -- --browser chrome --group Spec1 --ci-buld-id 6"
+  },
+  "keywords": [
+    "7.7"
+  ],
+  "author": "Shadrin",
+  "license": "ISC",
+  "dependencies": {
+    "cypress-image-snapshot": "^4.0.1"
+  },
+  "devDependencies": {
+    "cypress": "^9.5.2",
+    "cypress-file-upload": "^5.0.8"
+  }
+}
