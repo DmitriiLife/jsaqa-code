@@ -4,7 +4,6 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "cy:run": "cypress run",
     "electron_headless": "npx cypress run --browser electron",
     "chrome_headless": "npx cypress run --browser chrome",
     "electron_headed": "npx cypress run --headed --browser electron",
@@ -12,7 +11,7 @@
     "electron_headless_env": "npx cypress run --browser electron --config-file cypress.env.json",
     "chrome_headless_env": "npx cypress run --browser chrome --config-file cypress.env.json",
     "electron_headed_env": "npx cypress run --headed --browser electron --config-file cypress.env.json",
-    "chrome_headed_env": "--headed --browser chrome --config-file cypress.env.json"
+    "chrome_headed_env": "npx cypress run --headed --browser chrome --config-file cypress.env.json"
   },
   "author": "shadrin",
   "license": "ISC",

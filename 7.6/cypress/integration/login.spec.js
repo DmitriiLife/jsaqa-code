@@ -64,6 +64,7 @@ it("Should valid account and delete favorite book", () => {
   cy.get("#authors").type("Риз Лаванда");
   cy.contains("add to favorite").click().click();
   cy.contains("Submit").click();
+  cy.wait(2000);
   cy.contains("Delete from favorite").click();
   cy.contains("Favorites").click();
   cy.contains("Please add some book to favorit on home page!").should(
