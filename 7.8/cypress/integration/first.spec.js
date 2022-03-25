@@ -78,7 +78,7 @@ describe("Сreate hall", () => {
 describe("Buy ticket", () => {
   it("Buy tickets for the whole group", () => {
     cy.visit(urls.client);
-    cy.contains(sel.sunday).click();
+    cy.contains(sel.monday).click();
     cy.get(sel.movieTime).click();
     vip.forEach((vipSeat) => {
       cy.get(

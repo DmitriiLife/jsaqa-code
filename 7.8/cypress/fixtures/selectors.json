@@ -41,5 +41,6 @@
   "filmSearch": "Принц Персии: Пески времени",
   "filmId90": "[draggable='true'][data-film-id='90'] > .conf-step__movie-poster",
   "timeIdHall": "[data-hall-id='1740'] > .conf-step__seances-timeline",
-  "searchIdFilm90": "[data-seance-id='90']"
+  "searchIdFilm90": "[data-seance-id='90']",
+  "monday": "Пн"
 }
