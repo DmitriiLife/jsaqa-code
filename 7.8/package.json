@@ -1,17 +1,18 @@
 {
-  "name": "7.7",
+  "name": "7.8",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "open": "npx cypress open",
-    "api": "npx cypress run --record --key bef1f1f9-dc87-4e3d-8499-052324494dba",
-    "cy:spec1": "cypress run --spec 'cypress/integration/api.spec.js' --record --key bef1f1f9-dc87-4e3d-8499-052324494dba",
-    "cy:spec2": "cypress run --spec 'cypress/integration/first.spec.js' --record --key bef1f1f9-dc87-4e3d-8499-052324494dba",
-    "cy:parallel": "npm run cy:spec1 -- --browser chrome --group Spec1 --ci-build-id 6 & npm run cy:spec2 -- --browser chrome --group Spec1 --ci-build-id 6"
+    "cy:run:chrome": "cypress run --browser chrome --record --key 7b85819a-6fe8-483e-a064-c53db2300e9d",
+    "cy:run:firefox": "cypress run --browser firefox --record --key 7b85819a-6fe8-483e-a064-c53db2300e9d",
+    "cy:run:electron": "cypress run --browser electron --record --key 7b85819a-6fe8-483e-a064-c53db2300e9d",
+    "cy:specMonk": "cypress run --group Monk --spec 'cypress/monk/**/*' --browser firefox --record --key 7b85819a-6fe8-483e-a064-c53db2300e9d",
+    "cy:specInteg": "cypress run --group Integ --spec 'cypress/integration/**/*' --browser chrome --record --key 7b85819a-6fe8-483e-a064-c53db2300e9d",
+    "cy:parallel": "npm run cy:specMonk -- --browser chrome --group Spec1 --ci-build-id 11 & npm run cy:specInteg -- --browser firefox --group Spec2 --ci-build-id 11"
   },
   "keywords": [
-    "7.7"
+    "7.8"
   ],
   "author": "Shadrin",
   "license": "ISC",

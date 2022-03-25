@@ -42,5 +42,8 @@
   "filmId90": "[draggable='true'][data-film-id='90'] > .conf-step__movie-poster",
   "timeIdHall": "[data-hall-id='1740'] > .conf-step__seances-timeline",
   "searchIdFilm90": "[data-seance-id='90']",
-  "monday": "Пн"
+  "monday": "Пн",
+  "hallSales": "#start-sales > [style='display: block;'] > .conf-step__selectors-box > :nth-child(1) > .conf-step__radio",
+  "clickDelethall1": ".conf-step__list > :nth-child(1) > a > .conf-step__button",
+  "accDeletHall": "form > .conf-step__buttons > .conf-step__button-accent"
 }
