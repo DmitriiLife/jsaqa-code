@@ -1,11 +1,10 @@
 {
-  "name": "7.7",
+  "name": "7.7.cinema",
   "version": "1.0.0",
-  "description": "",
+  "description": "cinema",
   "main": "index.js",
   "scripts": {
-    "open": "npx cypress open",
-    "api": "npx cypress run --record --key bef1f1f9-dc87-4e3d-8499-052324494dba"
+    "open": "npx cypress open"
   },
   "keywords": [
     "7.7"
